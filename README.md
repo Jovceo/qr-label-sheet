@@ -57,9 +57,14 @@ A full UI built on this package: <https://jsgenerator.com/tools/qr-code-generato
 
 ## Install
 
+Not on the npm registry yet — install straight from GitHub (a `prepare` script
+builds the package on your machine, no prebuilt artifacts shipped):
+
 ```sh
-npm i qr-label-sheet
+npm i github:Jovceo/qr-label-sheet
 ```
+
+It will land on `npm i qr-label-sheet` once there is real demand for it.
 
 Node 18+. ESM only.
 
