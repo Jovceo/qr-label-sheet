@@ -1,0 +1,55 @@
+{
+  "name": "qr-label-sheet",
+  "version": "0.1.0",
+  "description": "CSV in, printable A4 QR label sheet out. Pure string/SVG output, no canvas, no upload, no runtime dependencies.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": false,
+  "engines": {
+    "node": ">=18"
+  },
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./sheet": {
+      "types": "./dist/sheet.d.ts",
+      "import": "./dist/sheet.js"
+    },
+    "./svg": {
+      "types": "./dist/svg.d.ts",
+      "import": "./dist/svg.js"
+    },
+    "./payloads": {
+      "types": "./dist/payloads.d.ts",
+      "import": "./dist/payloads.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "test": "npm run build && node --test",
+    "prepublishOnly": "npm test"
+  },
+  "keywords": [
+    "qr",
+    "qrcode",
+    "label",
+    "label-sheet",
+    "a4",
+    "print",
+    "csv",
+    "svg",
+    "batch",
+    "sticker"
+  ],
+  "devDependencies": {
+    "jsqr": "^1.4.0",
+    "qrcode": "^1.5.4",
+    "typescript": "^5.7.2"
+  }
+}

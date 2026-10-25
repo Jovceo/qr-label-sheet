@@ -1,0 +1,41 @@
+name: test
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [20, 22]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node }}
+          cache: npm
+
+      - run: npm ci
+
+      # No secrets, no env: this package has zero runtime dependencies and touches no
+      # network. If a test ever needs an environment variable to pass, that is the bug.
+      - name: Build and run the round-trip suite
+        run: npm test
+
+      # The suite imports from dist/, so a green run already proves the build emitted.
+      # This is the extra inch: the entry points a consumer resolves must exist too.
+      - name: Published entry points exist
+        run: |
+          for f in dist/index.js dist/sheet.js dist/svg.js dist/payloads.js \
+                   dist/index.d.ts dist/sheet.d.ts dist/svg.d.ts dist/payloads.d.ts; do
+            test -f "$f" || { echo "missing $f"; exit 1; }
+          done
+          echo "all four entries (js + d.ts) emitted"

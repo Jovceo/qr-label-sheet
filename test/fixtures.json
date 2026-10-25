@@ -1,0 +1,58 @@
+{
+  "_comment": "Fixtures for test/payloads.test.mjs. One entry per payload mode the builder offers; the values deliberately contain the characters that break naive builders. Add a mode to src/payloads.ts and the suite fails until it has a fixture here.",
+  "modes": [
+    {
+      "mode": "url",
+      "ecl": "M",
+      "values": { "value": "jsgenerator.com/tools/qr-code-generator?utm=qr" }
+    },
+    {
+      "mode": "text",
+      "ecl": "M",
+      "values": { "value": "Booth 12 · demo every 30 min — 東京" }
+    },
+    {
+      "mode": "wifi",
+      "ecl": "Q",
+      "values": {
+        "ssid": "Café; Guest \"Net\"",
+        "password": "pa,ss:wo;rd\\1",
+        "security": "WPA",
+        "hidden": "true"
+      }
+    },
+    {
+      "mode": "vcard",
+      "ecl": "M",
+      "values": {
+        "first": "Ada",
+        "last": "Lovelace, Byron",
+        "org": "Analytical Engines; Ltd",
+        "title": "Chief\nEngineer",
+        "phone": "+44 20 7946 0000",
+        "email": "ada@example.com",
+        "website": "example.com",
+        "address": "12 Marylebone Rd",
+        "city": "London",
+        "region": "",
+        "postalCode": "NW1 5JY",
+        "country": "UK",
+        "note": "Met at the QR stand; ask about the escape bug"
+      }
+    },
+    {
+      "mode": "email",
+      "ecl": "M",
+      "values": {
+        "to": "hello@example.com",
+        "subject": "Bulk order — 500 labels",
+        "body": "Hi,\nwe need 500 QR labels by Friday.\nThanks"
+      }
+    },
+    {
+      "mode": "sms",
+      "ecl": "M",
+      "values": { "number": "+447946000000", "message": "Sign me up for the standing desk; row 12" }
+    }
+  ]
+}
